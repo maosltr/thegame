@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "players.hpp"
+#include "cooks.hpp"
 using namespace std;
 
 int start_the_game(std::vector<Player> players)
@@ -51,12 +52,13 @@ void play(Player *player)
     if (player->money < 1)
     {
         std::cout << "BRO, you are broke, let's go for street food \n\n";
-        int streetFood = 1;
+        streetFood = 1;
     }
 
     if (option2 == 2)
     {
         std::cout << "I know the best street food in town, wallah \n\n";
+        streetFood = 1;
     }
 
     if (player->money > 0 && option2 == 1)
@@ -69,10 +71,9 @@ void play(Player *player)
     {
 
     case 1:
-        // cook Cooks(option, streetFood)
-        std::cout << "1. Austrian\n";
-        std::cout << "Your cook is: \n";
-        std::cout << "He cooks: \n";
+
+        Cook cook("Austrian", streetFood);
+        cook.cook();
     }
 
     // implement game actions

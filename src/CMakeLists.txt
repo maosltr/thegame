@@ -1,5 +1,5 @@
-set(LIBRARY_SOURCES "players.cpp" "game.cpp")
-set(LIBRARY_HEADERS "players.hpp" "game.hpp")
+set(LIBRARY_SOURCES "players.cpp" "game.cpp" "cooks.cpp")
+set(LIBRARY_HEADERS "players.hpp" "game.hpp" "cooks.hpp")
 
 
 add_library(${GAME_LIB} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
