@@ -12,6 +12,6 @@ public:
 
 public:
     Cook(string type, int streetFood) : type(type), streetFood(streetFood) {}
-
+    string pick_random(vector<string> names);
     void cook();
 };
