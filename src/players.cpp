@@ -1,12 +1,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "players.hpp"
+using namespace std;
 
-std::vector<std::string> setup_players()
+std::vector<Player> setup_players()
 {
     int numberOfPlayers;
     int numberOfPlayersCounter = 0;
-    std::vector<std::string> players;
+    std::vector<Player> players;
 
     system("clear");
     std::cout << "****** Setup Players ******\n";
@@ -18,7 +20,8 @@ std::vector<std::string> setup_players()
         std::string playerName;
         std::cout << "Name of player " << numberOfPlayersCounter + 1 << ": ";
         std::cin >> playerName;
-        players.push_back(playerName);
+        Player new_player(playerName);
+        players.push_back(new_player);
         numberOfPlayersCounter++;
 
     } while (numberOfPlayersCounter < numberOfPlayers);

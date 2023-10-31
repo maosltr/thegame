@@ -8,11 +8,10 @@ using namespace std;
 
 int main()
 {
-   std::vector<std::string> players;
+   std::vector<Player> players;
    int numberOfPlayers;
    int game_ended = 0;
    int player_turn = 0;
-   string player;
 
    players = setup_players();
    numberOfPlayers = start_the_game(players);
@@ -20,8 +19,7 @@ int main()
    while (true)
    {
 
-      player = players[player_turn];
-      play(player);
+      play(&players[player_turn]);
 
       player_turn = (player_turn + 1) % numberOfPlayers;
 
