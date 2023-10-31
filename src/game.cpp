@@ -22,8 +22,8 @@ int start_the_game(std::vector<Player> players)
 void play(Player *player)
 {
 
-    int option;
-    int option2;
+    string option;
+    string option2;
     int streetFood = 0;
     system("clear");
     cout << "****** " << player->name << " ******\n\n";
@@ -40,6 +40,7 @@ void play(Player *player)
     std::cout << "*********************\n\n";
 
     std::cin >> option;
+
     system("clear");
 
     cout << "What kind of food?\n\n";
@@ -49,33 +50,37 @@ void play(Player *player)
     std::cin >> option2;
     system("clear");
 
-    if (player->money < 1 && option2 == 1)
+    if (player->money < 1 && option2 == "1")
     {
         std::cout << "BRO, you are broke, let's go for street food \n\n";
         streetFood = 1;
     }
 
-    if (option2 == 2)
+    if (option2 == "2")
     {
         std::cout << "I know the best street food in town, wallah \n\n";
         streetFood = 1;
     }
 
-    if (player->money > 0 && option2 == 1)
+    if (player->money > 0 && option2 == "1")
     {
-        std::cout << "I know a cool super hiped restaurant, follow me, trust me !!! \n\n";
+        std::cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
         player->money--;
     }
 
-    switch (option)
+    if (option == "1")
     {
-
-    case 1:
-
         Cook cook("Austrian", streetFood);
         cook.cook();
     }
+    else
+    {
+
+        std::cout << " ... But you are too drunk to choose properly, maybe you need to wait for the next meal !!!" << std::endl;
+    }
 
     // implement game actions
-    std::cin >> option2;
+    string continue_game;
+    std::cout << "\nPress any key to continue ";
+    std::cin >> continue_game;
 };
