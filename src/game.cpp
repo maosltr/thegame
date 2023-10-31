@@ -49,7 +49,7 @@ void play(Player *player)
     std::cin >> option2;
     system("clear");
 
-    if (player->money < 1)
+    if (player->money < 1 && option2 == 1)
     {
         std::cout << "BRO, you are broke, let's go for street food \n\n";
         streetFood = 1;
