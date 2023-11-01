@@ -6,7 +6,7 @@ class Cook
 {
 public:
     // Constructor
-    Cook(string type, int streetFood);
+    Cook(string type, int foodStyle);
 
     // Functions
     string pick_random(vector<string> names);
@@ -18,7 +18,7 @@ public:
     vector<string> effects;
     string name;
     string speciality;
-    int streetFood;
+    int foodStyle;
     string type;
     string effect;
 };

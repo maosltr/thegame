@@ -4,38 +4,43 @@ using namespace std;
 #include "cooks.hpp"
 
 // Constructor implementation
-Cook::Cook(string type, int streetFood) : type(type), streetFood(streetFood)
+Cook::Cook(string type, int foodStyle) : type(type), foodStyle(foodStyle)
 {
 
-    if (streetFood == 1)
+    if (foodStyle == 1)
     {
-        cout << "You ordered " << type << " street food ..." << endl;
+        cout << "You ordered " << type << " street food ... ";
 
         effects.push_back("Farty ... Move ahead and the players after you have to move back");
         effects.push_back("Sick ... Go to hospital and skip the next round");
-        effects.push_back("Too Full ... stay where you are and skip next meal");
+        effects.push_back("Too Full ... stay where you are and skip the next meal");
         effects.push_back("Feel good ... move ahead");
         effects.push_back("Intoxicated ... Go to hospital or to jail if you have offered the food");
         effects.push_back("Burpy ... move ahead and the players in front move ahead");
+        effects.push_back("Food Coma ... Skip your next two turns");
+        effects.push_back("Food Truck Rally ... Swap places with another player who's also eating street food");
     }
     else
     {
-        cout << "You ordered " << type << " fancy food ..." << endl;
+        cout << "You ordered " << type << " fancy food ... ";
 
         effects.push_back("Happy ... move ahead");
-        effects.push_back("Full  ... move ahead slowly");
+        effects.push_back("Full ... move ahead slowly");
         effects.push_back("Energetic ... move ahead 2 steps");
-        effects.push_back("Burpy  ... move ahead and the players in front move ahead");
-        effects.push_back("sleepy ... stay way you are for a little power nap");
+        effects.push_back("Burpy ... move ahead and the players in front move ahead");
+        effects.push_back("Sleepy ... stay where you are for a little power nap");
+        effects.push_back("Mystery Dish ... Your next dish has a hidden effect, choose wisely");
+        effects.push_back("Food Critic Review ... Move ahead two steps and take an extra turn");
+        effects.push_back("Fine Dining Discount ... Move ahead one step and skip your next turn");
     };
 }
 
 string Cook::pick_random(vector<string> list)
 {
     string random_x;
-    static random_device rd;
-    static mt19937 gen(rd());
-    static uniform_int_distribution<int> dist(0, list.size() - 1);
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dist(0, list.size() - 1);
 
     int randomIndex = dist(gen);
     random_x = list[randomIndex];
@@ -45,7 +50,7 @@ string Cook::pick_random(vector<string> list)
 
 void Cook::cook()
 {
-    if (type == "Austrian" && streetFood == 1)
+    if (type == "Austrian" && foodStyle == 1)
     {
         // Austrian streed food cooks and specialities
         names.push_back("Gaga");
@@ -58,7 +63,7 @@ void Cook::cook()
         specialities.push_back("Leberkäsesemmel");
         specialities.push_back("käsekrainer");
     }
-    if (type == "Austrian" && streetFood == 0)
+    if (type == "Austrian" && foodStyle == 0)
     {
 
         // Austrian fancy cooks and specialities
@@ -72,7 +77,7 @@ void Cook::cook()
         specialities.push_back("Käsespätzle");
         specialities.push_back("Germknödel");
     }
-    if (type == "Moroccan" && streetFood == 1)
+    if (type == "Moroccan" && foodStyle == 1)
     {
         // Moroccan streed food cooks and specialities
         names.push_back("Faycal");
@@ -85,7 +90,7 @@ void Cook::cook()
         specialities.push_back("Sfenj");
         specialities.push_back("Harira");
     }
-    if (type == "Moroccan" && streetFood == 0)
+    if (type == "Moroccan" && foodStyle == 0)
     {
 
         // Moroccan fancy cooks and specialities
@@ -99,7 +104,17 @@ void Cook::cook()
         specialities.push_back("Seffa");
         specialities.push_back("Bissara");
     }
-    if (type == "French" && streetFood == 1)
+    if (type == "French" && foodStyle == 2)
+    {
+        // French streed food cooks and specialities
+        names.push_back("Ange");
+
+        specialities.push_back("Coq au Vin");
+        specialities.push_back("Bœuf Bourguignon");
+        specialities.push_back("Crêpes Suzette");
+        specialities.push_back("Tian de légumes du soleil");
+    }
+    if (type == "French" && foodStyle == 1)
     {
         // French streed food cooks and specialities
         names.push_back("Raph");
@@ -109,15 +124,15 @@ void Cook::cook()
 
         specialities.push_back("sandwish merguez");
         specialities.push_back("Tacos de Lyon");
-        specialities.push_back("Crepe au beur safé");
+        specialities.push_back("Crepe au beur salé");
         specialities.push_back("... Shit it burned :(");
     }
-    if (type == "French" && streetFood == 0)
+    if (type == "French" && foodStyle == 0)
     {
 
         // French fancy cooks and specialities
         names.push_back("Victor");
-        names.push_back("Ange");
+        names.push_back("Marine");
         names.push_back("Magaux");
         names.push_back("Theo");
 
@@ -126,7 +141,7 @@ void Cook::cook()
         specialities.push_back("Croissant");
         specialities.push_back("canard laqué");
     }
-    if (type == "German" && streetFood == 1)
+    if (type == "German" && foodStyle == 1)
     {
         // German streed food cooks and specialities
         names.push_back("Eli");
@@ -139,7 +154,7 @@ void Cook::cook()
         specialities.push_back("curry wurst");
         specialities.push_back("... Shit it burned :(");
     }
-    if (type == "German" && streetFood == 0)
+    if (type == "German" && foodStyle == 0)
     {
 
         // German fancy cooks and specialities
@@ -153,7 +168,7 @@ void Cook::cook()
         specialities.push_back("gluten free musli");
         specialities.push_back("lactos free pumkin soup");
     }
-    if (type == "Indian" && streetFood == 1)
+    if (type == "Indian" && foodStyle == 1)
     {
         // Indian street food cooks and specialties
         names.push_back("Raj");
@@ -166,7 +181,7 @@ void Cook::cook()
         specialities.push_back("Vada Pav");
         specialities.push_back("... Shit it burned :(");
     }
-    if (type == "Indian" && streetFood == 0)
+    if (type == "Indian" && foodStyle == 0)
     {
         // Indian fancy cooks and specialties
         names.push_back("Sanjeev");
@@ -192,8 +207,11 @@ void Cook::cook()
     }
 
     // Effect of the food
-    cout << "Allo " << name << " !!!" << endl;
-    cout << name << " made " << speciality << " 😋" << endl;
+    cout << "Allo " << name << " !!!\n\n";
+
+    // the restaurant is randomly closed
+
+    cout << name << " made " << speciality << " 😋\n";
     effect = pick_random(effects);
     cout << "You feel " << effect << endl;
 };
