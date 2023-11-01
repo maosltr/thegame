@@ -24,7 +24,7 @@ void play(Player *player)
 
     string option;
     string option2;
-    int streetFood = 0;
+    int streetFood = 1;
     system("clear");
     cout << "****** " << player->name << " ******\n\n";
 
@@ -66,6 +66,7 @@ void play(Player *player)
     {
         std::cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
         player->money--;
+        streetFood = 0;
     }
 
     if (option == "1")
@@ -73,9 +74,28 @@ void play(Player *player)
         Cook cook("Austrian", streetFood);
         cook.cook();
     }
+    else if (option == "2")
+    {
+        Cook cook("Moroccan", streetFood);
+        cook.cook();
+    }
+    else if (option == "3")
+    {
+        Cook cook("French", streetFood);
+        cook.cook();
+    }
+    else if (option == "4")
+    {
+        Cook cook("German", streetFood);
+        cook.cook();
+    }
+    else if (option == "5")
+    {
+        Cook cook("Indian", streetFood);
+        cook.cook();
+    }
     else
     {
-
         std::cout << " ... But you are too drunk to choose properly, maybe you need to wait for the next meal !!!" << std::endl;
     }
 

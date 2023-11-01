@@ -5,13 +5,20 @@ using namespace std;
 class Cook
 {
 public:
-    string name;
-    int streetFood;
-    string type;
-    string speciality;
+    // Constructor
+    Cook(string type, int streetFood);
 
-public:
-    Cook(string type, int streetFood) : type(type), streetFood(streetFood) {}
+    // Functions
     string pick_random(vector<string> names);
     void cook();
+
+    // Variables
+    vector<string> names;
+    vector<string> specialities;
+    vector<string> effects;
+    string name;
+    string speciality;
+    int streetFood;
+    string type;
+    string effect;
 };

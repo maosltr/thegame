@@ -6,7 +6,7 @@ class Player
 {
 
 public:
-    Player(string playerName) : name(playerName), money(3) // Initialize name and money
+    Player(string playerName) : name(playerName), money(10) // Initialize name and money
     {
         cout << "Constructor" << endl;
     }
