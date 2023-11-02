@@ -1,6 +1,6 @@
 # thegame
  
-# Debug
+# Debug mode
 
 rm -rf build
 	mkdir build
