@@ -39,6 +39,7 @@ string showMenue1(Player *player)
     cout << "4. German\n";
     cout << "5. Indian\n";
     cout << "*********************\n\n";
+    cout << "NB: You can either order for yourself, or offer the meal\n\n";
 
     cin >> option1;
     system("clear");

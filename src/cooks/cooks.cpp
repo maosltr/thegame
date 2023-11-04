@@ -3,6 +3,8 @@
 using namespace std;
 #include "cooks.hpp"
 #include "players.hpp"
+#include "utils.hpp"
+
 #include <map>
 
 // Constructor implementation
@@ -44,19 +46,6 @@ Cook::Cook(string kitchen, string foodStyle) : kitchen(kitchen), foodStyle(foodS
         effects.push_back("Food Critic ... Stop critisizing and move back 1 step");
     };
 }
-
-string Cook::pick_random(vector<string> list)
-{
-    string random_x;
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<int> dist(0, list.size() - 1);
-
-    int randomIndex = dist(gen);
-    random_x = list[randomIndex];
-
-    return random_x;
-};
 
 void Cook::cook(Player *player)
 {

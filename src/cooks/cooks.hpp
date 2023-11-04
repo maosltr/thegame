@@ -1,6 +1,6 @@
 #pragma once
 using namespace std;
-#include <random>
+
 #include "players.hpp"
 
 class Cook
@@ -10,7 +10,6 @@ public:
     Cook(string kitchen, string foodStyle);
 
     // Functions
-    string pick_random(vector<string> names);
     void cook(Player *player);
 
     // Variables
