@@ -43,7 +43,7 @@ string showMenue1(Player *player)
     return option1;
 };
 
-string showMenue2(string option1)
+string showMenue2(Player *player)
 {
 
     system("clear");
@@ -51,79 +51,66 @@ string showMenue2(string option1)
     cout << "What kind of food?\n\n";
     std::cout << "1. Fancy\n";
     std::cout << "2. Street Food\n";
-    if (option1 == "3")
-    {
-        std::cout << "3. Gourmet\n";
-    };
+    std::cout << "3. Gourmet\n";
+
     std::cout << "*********************\n\n";
     std::cin >> option2;
-    return option2;
-};
-
-int streetFood(Player *player, string option2)
-{
-
     system("clear");
 
     if ((player->money < 1 && option2 == "1") || (player->money < 2 && option2 == "3"))
     {
         std::cout << "BRO, you are broke, let's go for street food \n\n";
-        foodStyle = 1;
+        return "StreetFood";
     }
-
     else if (option2 == "2")
     {
         std::cout << "I know the best street food in town, wallah \n\n";
-        foodStyle = 1;
+        return "StreetFood";
     }
-
     else if (player->money > 0 && option2 == "1")
     {
         std::cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
         player->money--;
-        foodStyle = 0;
+        return "Fancy";
     }
     else if (player->money > 2 && option2 == "3")
     {
         std::cout << "Très bon choix cher ami ... \n\n";
-        player->money--;
-        player->money--;
-        foodStyle = 2;
+        player->money -= 2;
+        return "Gourmet";
     }
     else
     {
-        foodStyle = 1;
+        return "StreetFood";
     }
-
-    return foodStyle;
 };
 
-void callCook(string option, int foodStyle)
+void callCook(Player *player, string kitchen, string foodStyle)
 {
-    if (option == "1")
+    if (kitchen == "1")
     {
         Cook cook("Austrian", foodStyle);
-        cook.cook();
+        cook.cook(player);
     }
-    else if (option == "2")
+    else if (kitchen == "2")
     {
         Cook cook("Moroccan", foodStyle);
-        cook.cook();
+        cook.cook(player);
     }
-    else if (option == "3")
+    else if (kitchen == "3")
     {
         Cook cook("French", foodStyle);
-        cook.cook();
+        cook.cook(player);
     }
-    else if (option == "4")
+    else if (kitchen == "4")
     {
         Cook cook("German", foodStyle);
-        cook.cook();
+        cook.cook(player);
     }
-    else if (option == "5")
+    else if (kitchen == "5")
     {
         Cook cook("Indian", foodStyle);
-        cook.cook();
+        cook.cook(player);
     }
     else
     {
@@ -134,17 +121,4 @@ void callCook(string option, int foodStyle)
     string continue_game;
     std::cout << "\nPress any key to continue ";
     std::cin >> continue_game;
-};
-
-void play(Player *player)
-{
-
-    string option1;
-    string option2;
-    int foodStyle;
-
-    option1 = showMenue1(player);
-    option2 = showMenue2(option1);
-    foodStyle = streetFood(player, option2);
-    callCook(option1, foodStyle);
 };

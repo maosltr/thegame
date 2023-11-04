@@ -2,10 +2,15 @@ prepare:
 	rm -rf build
 	mkdir build
 
-build:
+build_app:
 	cd build && \
 	cmake  -DCMAKE_BUILD_TYPE=Debug .. && \
-	cmake --build .
+	make -j4
+debug_app:
+	gdb build/app/theGame
 
 dependency:
 	cd build && cmake .. --graphviz=graph.dot && dot -Tpng graph.dot -o graphImage.png
+
+play:
+	./build/app/theGame

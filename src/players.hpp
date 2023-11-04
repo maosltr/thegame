@@ -8,12 +8,12 @@ class Player
 public:
     Player(string playerName) : name(playerName), money(10) // Initialize name and money
     {
-        cout << "Constructor" << endl;
-    }
+        cout << "Nice name !" << endl;
+        }
 
     string name; // Declare name and money here
     int money;
-
+    int skipNextRound;
     void play();
 };
 

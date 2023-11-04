@@ -1,24 +1,25 @@
 #pragma once
 using namespace std;
 #include <random>
+#include "players.hpp"
 
 class Cook
 {
 public:
     // Constructor
-    Cook(string type, int foodStyle);
+    Cook(string kitchen, string foodStyle);
 
     // Functions
     string pick_random(vector<string> names);
-    void cook();
+    void cook(Player *player);
 
     // Variables
     vector<string> names;
     vector<string> specialities;
     vector<string> effects;
-    string name;
+    string cookName;
     string speciality;
-    int foodStyle;
-    string type;
+    string foodStyle;
+    string kitchen;
     string effect;
 };

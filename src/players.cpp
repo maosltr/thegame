@@ -21,6 +21,7 @@ std::vector<Player> setup_players()
         std::cout << "Name of player " << numberOfPlayersCounter + 1 << ": ";
         std::cin >> playerName;
         Player new_player(playerName);
+        new_player.skipNextRound++;
         players.push_back(new_player);
         numberOfPlayersCounter++;
 
