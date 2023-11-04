@@ -3,6 +3,7 @@
 #include <vector>
 #include "players.hpp"
 #include "cooks.hpp"
+
 using namespace std;
 
 int numPlayers;
@@ -10,15 +11,15 @@ string option1;
 string option2;
 int foodStyle;
 
-int start_the_game(std::vector<Player> players)
+int startTheGame(vector<Player> players)
 {
 
     system("clear");
-    std::cout << "****** The Game have started ******" << endl;
-
+    cout << "****** The Game have started ******" << endl;
     numPlayers = players.size();
     cout << "Number of players: " << numPlayers << endl;
-    std::cin;
+    cin;
+    system("clear");
 
     return numPlayers;
 }
@@ -31,51 +32,51 @@ string showMenue1(Player *player)
     cout << "What do you want to eat today?\n";
     cout << "Credit: " << player->money << "$ \n\n";
 
-    std::cout << "********MENU*********\n";
-    std::cout << "1. Austrian\n";
-    std::cout << "2. Moroccan\n";
-    std::cout << "3. French\n";
-    std::cout << "4. German\n";
-    std::cout << "5. Indian\n";
-    std::cout << "*********************\n\n";
+    cout << "********MENU*********\n";
+    cout << "1. Austrian\n";
+    cout << "2. Moroccan\n";
+    cout << "3. French\n";
+    cout << "4. German\n";
+    cout << "5. Indian\n";
+    cout << "*********************\n\n";
 
-    std::cin >> option1;
+    cin >> option1;
+    system("clear");
+
     return option1;
 };
 
 string showMenue2(Player *player)
 {
 
-    system("clear");
-
     cout << "What kind of food?\n\n";
-    std::cout << "1. Fancy\n";
-    std::cout << "2. Street Food\n";
-    std::cout << "3. Gourmet\n";
+    cout << "1. Fancy\n";
+    cout << "2. Street Food\n";
+    cout << "3. Gourmet\n";
 
-    std::cout << "*********************\n\n";
-    std::cin >> option2;
+    cout << "*********************\n\n";
+    cin >> option2;
     system("clear");
 
     if ((player->money < 1 && option2 == "1") || (player->money < 2 && option2 == "3"))
     {
-        std::cout << "BRO, you are broke, let's go for street food \n\n";
+        cout << "BRO, you are broke, let's go for street food \n\n";
         return "StreetFood";
     }
     else if (option2 == "2")
     {
-        std::cout << "I know the best street food in town, wallah \n\n";
+        cout << "I know the best street food in town, wallah \n\n";
         return "StreetFood";
     }
     else if (player->money > 0 && option2 == "1")
     {
-        std::cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
+        cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
         player->money--;
         return "Fancy";
     }
     else if (player->money > 2 && option2 == "3")
     {
-        std::cout << "Très bon choix cher ami ... \n\n";
+        cout << "Très bon choix cher ami ... \n\n";
         player->money -= 2;
         return "Gourmet";
     }
@@ -114,12 +115,12 @@ void callCook(Player *player, string kitchen, string foodStyle)
     }
     else
     {
-        std::cout << " ... But you are too drunk to choose properly, maybe you need to wait for the next meal !!!" << std::endl;
+        cout << " ... But you are too drunk to choose properly, maybe you need to wait for the next meal !!!" << endl;
     }
 
     // implement game actions
     string continue_game;
-    std::cout << "\nPress any key to continue ";
-    std::cin >> continue_game;
+    cout << "\nPress any key to continue ";
+    cin >> continue_game;
     system("clear");
 };

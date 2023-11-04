@@ -6,26 +6,29 @@ using namespace std;
 
 std::vector<Player> setup_players()
 {
+    const int INITIAL_SKIP_COUNT = 0;
+
     int numberOfPlayers;
     int numberOfPlayersCounter = 0;
+
     std::vector<Player> players;
 
     system("clear");
-    std::cout << "****** Setup Players ******\n";
-    std::cout << "Enter the number of players: ";
-    std::cin >> numberOfPlayers;
+    cout << "****** Setup Players ******\n";
+    cout << "Enter the number of players: ";
+    cin >> numberOfPlayers;
 
-    do
+    while (numberOfPlayersCounter < numberOfPlayers)
     {
-        std::string playerName;
-        std::cout << "Name of player " << numberOfPlayersCounter + 1 << ": ";
-        std::cin >> playerName;
-        Player new_player(playerName);
-        new_player.skipNextRound = 0;
-        players.push_back(new_player);
-        numberOfPlayersCounter++;
+        string playerName;
+        cout << "Name of player " << numberOfPlayersCounter + 1 << ": ";
+        cin >> playerName;
 
-    } while (numberOfPlayersCounter < numberOfPlayers);
+        Player newPlayer(playerName);
+        newPlayer.skipNextRound = INITIAL_SKIP_COUNT;
+        players.push_back(newPlayer);
+        numberOfPlayersCounter++;
+    };
 
     return players;
 }

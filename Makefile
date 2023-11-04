@@ -14,3 +14,6 @@ dependency:
 
 play:
 	./build/app/theGame
+
+analyze:
+	find . -name "*.[ch]pp" | xargs wc -l

@@ -15,7 +15,7 @@ int main()
    Player *player;
 
    players = setup_players();
-   numberOfPlayers = start_the_game(players);
+   numberOfPlayers = startTheGame(players);
 
    while (true)
    {
