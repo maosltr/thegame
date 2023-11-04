@@ -27,6 +27,9 @@ int main()
 
          player->skipNextRound = 0;
          cout << "****** " << player->name << " Skip your turn ******\n\n";
+         string continue_game;
+         std::cout << "\nPress any key to continue ";
+         std::cin >> continue_game;
       }
       else
       {

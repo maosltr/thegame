@@ -121,4 +121,5 @@ void callCook(Player *player, string kitchen, string foodStyle)
     string continue_game;
     std::cout << "\nPress any key to continue ";
     std::cin >> continue_game;
+    system("clear");
 };
