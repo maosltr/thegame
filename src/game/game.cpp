@@ -11,6 +11,12 @@ string option1;
 string option2;
 int foodStyle;
 
+/**
+ * @brief Starts The Game
+ *
+ * @param players: Vector of players objects
+ * @return Number of players
+ */
 int startTheGame(vector<Player> players)
 {
 

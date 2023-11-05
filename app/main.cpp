@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/**
+ * @brief Main entry point of The Game
+ *
+ * @return int
+ */
 int main()
 {
    std::vector<Player> players;
