@@ -4,7 +4,7 @@
 #include "players.hpp"
 using namespace std;
 
-std::vector<Player> setup_players(int numberOfPlayers)
+std::vector<Player> setup_players(int numberOfPlayers, istream &input, ostream &output)
 {
     const int INITIAL_SKIP_COUNT = 0;
 
@@ -14,9 +14,10 @@ std::vector<Player> setup_players(int numberOfPlayers)
 
     while (numberOfPlayersCounter < numberOfPlayers)
     {
-        string playerName;
+
         cout << "Name of player " << numberOfPlayersCounter + 1 << ": ";
-        cin >> playerName;
+        string playerName;
+        input >> playerName;
 
         Player newPlayer(playerName);
         newPlayer.skipNextRound = INITIAL_SKIP_COUNT;

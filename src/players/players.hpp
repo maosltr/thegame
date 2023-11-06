@@ -17,4 +17,4 @@ public:
     void play();
 };
 
-std::vector<Player> setup_players(int numberOfPlayers);
+std::vector<Player> setup_players(int numberOfPlayers, istream &input = cin, ostream &output = cout);

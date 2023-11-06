@@ -26,3 +26,6 @@ documentation:
 
 tests:
 	./build/testing/unit_tests
+
+tests_report:
+	./build/testing/unit_tests -s -o testing/test_results.txt

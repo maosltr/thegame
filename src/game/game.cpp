@@ -51,7 +51,7 @@ string showMenue1(Player *player)
     return option1;
 };
 
-string showMenue2(Player *player)
+string showMenue2(Player *player, istream &input, ostream &output)
 {
 
     cout << "What kind of food?\n\n";
@@ -60,26 +60,27 @@ string showMenue2(Player *player)
     cout << "3. Gourmet\n";
 
     cout << "*********************\n\n";
-    cin >> option2;
+    string option;
+    input >> option;
     system("clear");
 
-    if ((player->money < 1 && option2 == "1") || (player->money < 2 && option2 == "3"))
+    if ((player->money < 1 && option == "1") || (player->money < 2 && option == "3"))
     {
         cout << "BRO, you are broke, let's go for street food \n\n";
         return "StreetFood";
     }
-    else if (option2 == "2")
+    else if (option == "2")
     {
         cout << "I know the best street food in town, wallah \n\n";
         return "StreetFood";
     }
-    else if (player->money > 0 && option2 == "1")
+    else if (player->money > 0 && option == "1")
     {
         cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
         player->money--;
         return "Fancy";
     }
-    else if (player->money > 2 && option2 == "3")
+    else if (player->money > 2 && option == "3")
     {
         cout << "Très bon choix cher ami ... \n\n";
         player->money -= 2;
