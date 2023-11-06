@@ -4,19 +4,13 @@
 #include "players.hpp"
 using namespace std;
 
-std::vector<Player> setup_players()
+std::vector<Player> setup_players(int numberOfPlayers)
 {
     const int INITIAL_SKIP_COUNT = 0;
 
-    int numberOfPlayers;
     int numberOfPlayersCounter = 0;
 
     std::vector<Player> players;
-
-    system("clear");
-    cout << "****** Setup Players ******\n";
-    cout << "Enter the number of players: ";
-    cin >> numberOfPlayers;
 
     while (numberOfPlayersCounter < numberOfPlayers)
     {
@@ -31,4 +25,10 @@ std::vector<Player> setup_players()
     };
 
     return players;
+}
+
+// Testing
+unsigned int Factorial(unsigned int number)
+{
+    return number <= 1 ? number : Factorial(number - 1) * number;
 }

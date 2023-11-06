@@ -17,7 +17,7 @@ int foodStyle;
  * @param players: Vector of players objects
  * @return Number of players
  */
-int startTheGame(vector<Player> players)
+void startTheGame(vector<Player> players)
 {
 
     system("clear");
@@ -26,8 +26,6 @@ int startTheGame(vector<Player> players)
     cout << "Number of players: " << numPlayers << endl;
     cin;
     system("clear");
-
-    return numPlayers;
 }
 
 string showMenue1(Player *player)

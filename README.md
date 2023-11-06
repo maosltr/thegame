@@ -31,6 +31,11 @@ Use a Monopoly board and replace the starting point with The Hospital
  make documentation
  ```
 
+## Testing
+ ```bash
+ make tests
+ ```
+
 ## Debug app
  ```bash
  make debug_app
@@ -50,4 +55,4 @@ frame
 c
 next 
 step
-``````
+```

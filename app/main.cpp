@@ -19,10 +19,16 @@ int main()
    int player_turn = 0;
    Player *player;
 
-   players = setup_players();
-   numberOfPlayers = startTheGame(players);
+   system("clear");
+   cout << "****** Setup Players ******\n";
+   cout << "Enter the number of players: ";
+   cin >> numberOfPlayers;
+
+   players = setup_players(numberOfPlayers);
+   startTheGame(players);
 
    while (true)
+
    {
 
       player = &players[player_turn]; // pointer to the memory address of the actual player

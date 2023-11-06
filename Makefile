@@ -23,3 +23,6 @@ analyze:
 documentation:
 	cd docs && \
 	doxygen
+
+tests:
+	./build/testing/unit_tests

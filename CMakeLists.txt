@@ -15,6 +15,17 @@ set(COOKS_LIB cooks_lib)
 # Executable
 set(EXECUTABLE_NAME theGame)
 
+# Testing library
+include(FetchContent)
+FetchContent_Declare(
+    catch2
+    GIT_REPOSITORY https://github.com/catchorg/catch2
+    GIT_TAG v2.13.9
+    GIT_SHALLOW TRUE)
+
+FetchContent_MakeAvailable(catch2)
+
 add_subdirectory(utils)
 add_subdirectory(src)
 add_subdirectory(app)
+add_subdirectory(testing)
