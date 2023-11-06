@@ -1,14 +1,43 @@
 # thegame
+
+Use a Monopoly board and replace the starting point with The Hospital
  
-# Debug mode
+ ## Clean env
+ ```bash
+ make prepare
+ ```
+ 
+ ## Build the app
+ ```bash
+ make build_app
+ ```
+  
+ # Generate dependecy graph
+ ```bash
+ make dependency
+ ```
+## Play The Game
+```bash
+ make play
+ ```
 
-rm -rf build
-	mkdir build
-	cd build && \
-	cmake  -DCMAKE_BUILD_TYPE=Debug .. && \
-	cmake --build .
+## Analyze the code
+```bash
+ make analyze
+ ```
 
-gdb build/app/theGame
+## Generate documentation
+```bash
+ make documentation
+ ```
+
+## Debug app
+ ```bash
+ make debug_app
+ ```
+
+### Debug commands
+```bash
 b 20
 b cooks.cpp:20
 run 
@@ -21,4 +50,4 @@ frame
 c
 next 
 step
-
+``````
