@@ -18,5 +18,3 @@ public:
 };
 
 std::vector<Player> setup_players(int numberOfPlayers);
-
-unsigned int Factorial(unsigned int number);
