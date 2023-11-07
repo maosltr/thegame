@@ -37,7 +37,8 @@ TEST_CASE("Test foodStyle")
     SECTION("Ordering Fancy Food")
     {
         newPlayer.money = fancy_price + 1;
-        std::istringstream input_stream("1\n");
+        char input_char = '1';
+        std::istringstream input_stream(std::string(1, input_char));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Fancy");
     }

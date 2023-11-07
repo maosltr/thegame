@@ -7,8 +7,6 @@
 using namespace std;
 
 int numPlayers;
-string option1;
-string option2;
 int foodStyle;
 
 /**
@@ -28,7 +26,7 @@ void startTheGame(vector<Player> players)
     system("clear");
 }
 
-string showMenue1(Player *player)
+char showMenue1(Player *player)
 {
 
     system("clear");
@@ -44,11 +42,12 @@ string showMenue1(Player *player)
     cout << "5. Indian\n";
     cout << "*********************\n\n";
     cout << "NB: You can either order for yourself, or offer the meal\n\n";
-
-    cin >> option1;
+    
+    char option;
+    cin >> option;
     system("clear");
 
-    return option1;
+    return option;
 };
 
 string showMenue2(Player *player, istream &input, ostream &output)
@@ -60,27 +59,27 @@ string showMenue2(Player *player, istream &input, ostream &output)
     cout << "3. Gourmet\n";
 
     cout << "*********************\n\n";
-    string option;
+    char option;
     input >> option;
     system("clear");
 
-    if ((player->money < fancy_price && option == "1") || (player->money < gourmet_price && option == "3"))
+    if ((player->money < fancy_price && option == '1') || (player->money < gourmet_price && option == '3'))
     {
         cout << "BRO, you are broke, let's go for street food \n\n";
         return "StreetFood";
     }
-    else if (option == "2")
+    else if (option == '2')
     {
         cout << "I know the best street food in town, wallah \n\n";
         return "StreetFood";
     }
-    else if (player->money >= fancy_price && option == "1")
+    else if (player->money >= fancy_price && option == '1')
     {
         cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
         player->money-= fancy_price;
         return "Fancy";
     }
-    else if (player->money >= gourmet_price && option == "3")
+    else if (player->money >= gourmet_price && option == '3')
     {
         cout << "Très bon choix cher ami ... \n\n";
         player->money -= gourmet_price;
@@ -92,29 +91,29 @@ string showMenue2(Player *player, istream &input, ostream &output)
     }
 };
 
-void callCook(Player *player, string kitchen, string foodStyle)
+void callCook(Player *player, char kitchen, string foodStyle)
 {
-    if (kitchen == "1")
+    if (kitchen == '1')
     {
         Cook cook("Austrian", foodStyle);
         cook.cook(player);
     }
-    else if (kitchen == "2")
+    else if (kitchen == '2')
     {
         Cook cook("Moroccan", foodStyle);
         cook.cook(player);
     }
-    else if (kitchen == "3")
+    else if (kitchen == '3')
     {
         Cook cook("French", foodStyle);
         cook.cook(player);
     }
-    else if (kitchen == "4")
+    else if (kitchen == '4')
     {
         Cook cook("German", foodStyle);
         cook.cook(player);
     }
-    else if (kitchen == "5")
+    else if (kitchen == '5')
     {
         Cook cook("Indian", foodStyle);
         cook.cook(player);

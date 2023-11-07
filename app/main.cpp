@@ -45,7 +45,7 @@ int main()
       else
       {
          cout << "****** " << player->name << " ******\n\n";
-         std::string option1 = showMenue1(player);
+         char option1 = showMenue1(player);
          std::string option2 = showMenue2(player);
 
          callCook(player, option1, option2);
