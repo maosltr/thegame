@@ -34,19 +34,20 @@ TEST_CASE("Test foodStyle")
     newPlayer.skipNextRound = 0;
     std::ostringstream output_stream;
 
-    SECTION("Ordering Fancy Food")
+    SECTION("Ordering Fancy Food with more than enough money")
     {
         newPlayer.money = fancy_price + 1;
-        char input_char = '1';
-        std::istringstream input_stream(std::string(1, input_char));
+        char foodStyle = '1';
+        std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Fancy");
     }
 
-    SECTION("Ordering Fancy Food")
+    SECTION("Ordering Fancy Food with not enough money")
     {
         newPlayer.money = fancy_price - 1;
-        std::istringstream input_stream("1\n");
+        char foodStyle = '1';
+        std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "StreetFood");
     }
@@ -54,22 +55,25 @@ TEST_CASE("Test foodStyle")
     SECTION("Ordering Fancy Food with just enough money")
     {
         newPlayer.money = fancy_price;
-        std::istringstream input_stream("1\n");
+        char foodStyle = '1';
+        std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Fancy");
     }
 
     SECTION("Ordering Street Food")
     {
-        std::istringstream input_stream("2\n");
+        char foodStyle = '2';
+        std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "StreetFood");
     }
 
-    SECTION("Ordering Gourmet")
+    SECTION("Ordering Gourmet with more than enough money")
     {
         newPlayer.money = gourmet_price + 1;
-        std::istringstream input_stream("3\n");
+        char foodStyle = '3';
+        std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Gourmet");
     }
@@ -77,7 +81,8 @@ TEST_CASE("Test foodStyle")
     SECTION("Ordering Gourmet with just enough money")
     {
         newPlayer.money = gourmet_price;
-        std::istringstream input_stream("3\n");
+        char foodStyle = '3';
+        std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Gourmet");
     }
@@ -85,7 +90,8 @@ TEST_CASE("Test foodStyle")
     SECTION("Ordering Gourmet with not enough money")
     {
         newPlayer.money = gourmet_price - 1 ;
-        std::istringstream input_stream("3\n");
+        char foodStyle = '3';
+        std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "StreetFood");
     }
