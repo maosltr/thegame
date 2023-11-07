@@ -64,7 +64,7 @@ string showMenue2(Player *player, istream &input, ostream &output)
     input >> option;
     system("clear");
 
-    if ((player->money < 1 && option == "1") || (player->money < 2 && option == "3"))
+    if ((player->money < fancy_price && option == "1") || (player->money < gourmet_price && option == "3"))
     {
         cout << "BRO, you are broke, let's go for street food \n\n";
         return "StreetFood";
@@ -74,16 +74,16 @@ string showMenue2(Player *player, istream &input, ostream &output)
         cout << "I know the best street food in town, wallah \n\n";
         return "StreetFood";
     }
-    else if (player->money >= 1 && option == "1")
+    else if (player->money >= fancy_price && option == "1")
     {
         cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
-        player->money--;
+        player->money-= fancy_price;
         return "Fancy";
     }
-    else if (player->money >= 2 && option == "3")
+    else if (player->money >= gourmet_price && option == "3")
     {
         cout << "Très bon choix cher ami ... \n\n";
-        player->money -= 2;
+        player->money -= gourmet_price;
         return "Gourmet";
     }
     else

@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Libraries
 set(UTILS_LIB utils_lib)
+set(CONFIG_LIB conf_lib)
 set(PLAYERS_LIB players_lib)
 set(GAME_LIB game_lib)
 set(COOKS_LIB cooks_lib)

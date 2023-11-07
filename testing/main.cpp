@@ -4,6 +4,7 @@
 #include "players.hpp"
 #include "game.hpp"
 #include "cooks.hpp"
+#include "config.hpp"
 
 TEST_CASE("Test that Setup Players is working as expected")
 {
@@ -33,40 +34,56 @@ TEST_CASE("Test foodStyle")
     newPlayer.skipNextRound = 0;
     std::ostringstream output_stream;
 
-    SECTION("Test 1 Ordering Fancy Food")
+    SECTION("Ordering Fancy Food")
     {
-        newPlayer.money = 1;
+        newPlayer.money = fancy_price + 1;
         std::istringstream input_stream("1\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Fancy");
     }
 
-    SECTION("Test 2 Ordering Fancy Food")
+    SECTION("Ordering Fancy Food")
     {
-        newPlayer.money = 0;
+        newPlayer.money = fancy_price - 1;
         std::istringstream input_stream("1\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "StreetFood");
     }
 
-    SECTION("Test 3 Ordering Street Food")
+    SECTION("Ordering Fancy Food with just enough money")
+    {
+        newPlayer.money = fancy_price;
+        std::istringstream input_stream("1\n");
+        std::string result = showMenue2(&newPlayer, input_stream, output_stream);
+        REQUIRE(result == "Fancy");
+    }
+
+    SECTION("Ordering Street Food")
     {
         std::istringstream input_stream("2\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "StreetFood");
     }
 
-    SECTION("Test 4 Ordering Gourmet")
+    SECTION("Ordering Gourmet")
     {
-        newPlayer.money = 2;
+        newPlayer.money = gourmet_price + 1;
         std::istringstream input_stream("3\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Gourmet");
     }
 
-    SECTION("Test 5 Ordering Gourmet with not enough money")
+    SECTION("Ordering Gourmet with just enough money")
     {
-        newPlayer.money = 1;
+        newPlayer.money = gourmet_price;
+        std::istringstream input_stream("3\n");
+        std::string result = showMenue2(&newPlayer, input_stream, output_stream);
+        REQUIRE(result == "Gourmet");
+    }
+
+    SECTION("Ordering Gourmet with not enough money")
+    {
+        newPlayer.money = gourmet_price - 1 ;
         std::istringstream input_stream("3\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "StreetFood");
