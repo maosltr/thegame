@@ -29,3 +29,6 @@ tests:
 
 tests_report:
 	./build/testing/unit_tests -s -o testing/test_results.txt
+
+debug_tests:
+	gdb build/testing/unit_tests

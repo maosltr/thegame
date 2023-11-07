@@ -74,13 +74,13 @@ string showMenue2(Player *player, istream &input, ostream &output)
         cout << "I know the best street food in town, wallah \n\n";
         return "StreetFood";
     }
-    else if (player->money > 0 && option == "1")
+    else if (player->money >= 1 && option == "1")
     {
         cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
         player->money--;
         return "Fancy";
     }
-    else if (player->money > 2 && option == "3")
+    else if (player->money >= 2 && option == "3")
     {
         cout << "Très bon choix cher ami ... \n\n";
         player->money -= 2;

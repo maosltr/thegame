@@ -33,24 +33,42 @@ TEST_CASE("Test foodStyle")
     newPlayer.skipNextRound = 0;
     std::ostringstream output_stream;
 
-    SECTION("Option 1 Ordering Fancy Food")
+    SECTION("Test 1 Ordering Fancy Food")
     {
+        newPlayer.money = 1;
         std::istringstream input_stream("1\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Fancy");
     }
 
-    SECTION("Option 2 Ordering Street Food")
+    SECTION("Test 2 Ordering Fancy Food")
+    {
+        newPlayer.money = 0;
+        std::istringstream input_stream("1\n");
+        std::string result = showMenue2(&newPlayer, input_stream, output_stream);
+        REQUIRE(result == "StreetFood");
+    }
+
+    SECTION("Test 3 Ordering Street Food")
     {
         std::istringstream input_stream("2\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "StreetFood");
     }
 
-    SECTION("Option 3 Ordering Gourmet")
+    SECTION("Test 4 Ordering Gourmet")
     {
+        newPlayer.money = 2;
         std::istringstream input_stream("3\n");
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);
         REQUIRE(result == "Gourmet");
+    }
+
+    SECTION("Test 5 Ordering Gourmet with not enough money")
+    {
+        newPlayer.money = 1;
+        std::istringstream input_stream("3\n");
+        std::string result = showMenue2(&newPlayer, input_stream, output_stream);
+        REQUIRE(result == "StreetFood");
     }
 }
