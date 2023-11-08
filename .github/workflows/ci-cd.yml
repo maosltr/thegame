@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: ./.github/actions/thegame@implementation
+      uses: actions/thegame@implementation
     
     - name: Set up CMake
       run: sudo apt-get -y install cmake
