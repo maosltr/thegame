@@ -17,7 +17,6 @@ jobs:
     - name: Set up CMake
       run: sudo apt-get -y install cmake
 
-    steps:
     - name: prepare
       uses: mkdir build
 
