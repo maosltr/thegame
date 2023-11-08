@@ -16,5 +16,5 @@ jobs:
           cd build
           cmake ..
           make -j4
-      - name: Run Application
-        run: ./build/app/theGame
+      - name: Test Application
+        run: ./build/testing/unit_tests
