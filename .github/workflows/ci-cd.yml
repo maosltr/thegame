@@ -1,0 +1,20 @@
+name: C/C++ CI/CD
+
+on:
+  push:
+    branches:
+      - implementation
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: prepare
+      uses: mkdir build
+
+    - name: build app
+      run: cd build && cmake  .. make -j4
+
+    - name: Run App
+      run: ./build/app/theGame
