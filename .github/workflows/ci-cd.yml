@@ -11,20 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/thegame@implementation
-    
+      uses:  actions/checkout@v3
     - name: Set up CMake
       run: sudo apt-get -y install cmake
-
     - name: prepare
       uses: mkdir build
-
     - name: build app
       run: |
         cd build
         cmake ..
         make -j4
-
     - name: Run App
       run: ./build/app/theGame
