@@ -14,7 +14,7 @@ jobs:
       uses: mkdir build
 
     - name: build app
-      run: cd build && cmake  .. make -j4
+      run: cd build && cmake .. && make -j4
 
     - name: Run App
       run: ./build/app/theGame
