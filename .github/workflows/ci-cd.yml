@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: maosltr/thegame@implementation
+      uses: ./.github/actions/thegame@implementation
     
     - name: Set up CMake
       run: sudo apt-get -y install cmake
