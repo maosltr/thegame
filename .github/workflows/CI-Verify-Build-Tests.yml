@@ -1,5 +1,5 @@
 name: Verify the build and tests
-run-name: ${{ github.actor }} pushed changes to ${{ github.base_ref }}  🚀
+run-name: ${{ github.actor }} pushed changes to ${{ github.ref_name }}  🚀
 on: [push]
 jobs:
   Explore-GitHub-Actions:
