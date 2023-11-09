@@ -1,0 +1,20 @@
+name: Verify the build and tests
+run-name: ${{ github.actor }} pushed changes to ${{ github.ref_name }} branch  🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Set up CMake
+        run: sudo apt-get -y install cmake
+      - name: Create build directory
+        run: mkdir build
+      - name: Build C/C++ project
+        run: |
+          cd build
+          cmake ..
+          make -j4
+      - name: Test Application
+        run: ./build/testing/unit_tests
