@@ -16,13 +16,13 @@ Cook::Cook(string kitchen, string foodStyle) : kitchen(kitchen), foodStyle(foodS
         cout << "You ordered " << kitchen << " street food ... ";
 
         effects.push_back("Diahrea ... All players have to move away from you 5 steps. If a player is in the same place, he goes to the hospital");
-        effects.push_back("Farty ... The players after you have to move back 3 steps");
-        effects.push_back("Burpy ... The players ahead have to move ahead 3 steps");
-        effects.push_back("Intoxicated ... Go to hospital or to jail if you have offered the food");
+        effects.push_back("Farty ... The players behind you have to move back 3 steps");
+        effects.push_back("Burpy ... The players ahead of you have to move ahead 3 steps");
+        effects.push_back("Intoxicated ... Go to hospital. If you have been offered the food, the offerer goes to jail.");
         effects.push_back("Sick ... Go to hospital and if the cook is among the players, he goes to jail");
         effects.push_back("Food Coma ... stay where you are and skip the next meal");
         effects.push_back("High and lost ... Switch place with a random player who will throw the lowest dice");
-        effects.push_back("Super farty ... You go to jail, skip next round, and all players step back 2 steps");
+        effects.push_back("Super farty ... You go to jail, skip next round, and all players step away 2 steps. All people in jail go to the hospital");
     }
     else if (foodStyle == "Gourmet")
     {
@@ -47,7 +47,7 @@ Cook::Cook(string kitchen, string foodStyle) : kitchen(kitchen), foodStyle(foodS
     };
 }
 
-void Cook::cook(Player *player)
+void Cook::cook(Player *player, Player *guest)
 {
     // Define a map to store cooks and specialties for different cuisines and food styles
     std::map<std::pair<std::string, std::string>, std::pair<std::vector<std::string>, std::vector<std::string>>> data;
@@ -57,17 +57,17 @@ void Cook::cook(Player *player)
     data[{"Austrian", "Gourmet"}] = {{"Sofia"}, {"Schnitzel au vin", "Schnitzel Bourguignon", "Schnitzel Suzette"}};
     data[{"Austrian", "StreetFood"}] = {{"Gaga", "Beni", "Andy", "Stefan"}, {"Wurst", "kebab knödel", "Leberkäsesemmel", "käsekrainer"}};
 
-    data[{"Moroccan", "Fancy"}] = {{"Taha", "Soufiane", "Hamza", "Safaa"}, {"Tajine", "Couscous", "Seffa", "Bissara"}};
-    data[{"Moroccan", "Gourmet"}] = {{"Yasser"}, {"Lamb Tagine", "B'stilla", "Seafood Bastilla", "Tanjia"}};
-    data[{"Moroccan", "StreetFood"}] = {{"Faycal", "Aziz", "Mao", "Simo"}, {"Harcha kiri", "Mssemen", "Sfenj", "Harira"}};
+    data[{"Moroccan", "Fancy"}] = {{"Taha", "Soufiane", "Hamza", "Safaa"}, {"Tajine", "Couscous", "Rfissa", "Fish tajine"}};
+    data[{"Moroccan", "Gourmet"}] = {{"Yasser"}, {"Lamb Tagine", "Zaalouk", "Seafood Bastilla", "Tanjia"}};
+    data[{"Moroccan", "StreetFood"}] = {{"Faycal", "Aziz", "Mao", "Simo"}, {"Escargot", "Bissara", "Harcha kiri", "Mssemen", "Sfenj", "Harira"}};
 
     data[{"French", "Fancy"}] = {{"Victor", "Marine", "Magaux", "Theo"}, {"Raclette", "Tartiflette", "Croissant", "canard laqué"}};
-    data[{"French", "Gourmet"}] = {{"Ange"}, {"Coq au Vin", "Bœuf Bourguignon", "Crêpes Suzette", "Tian de légumes du soleil"}};
+    data[{"French", "Gourmet"}] = {{"Ange"}, {"Coq au Vin", "Escargot", "Bœuf Bourguignon", "Crêpes Suzette", "Tian de légumes du soleil"}};
     data[{"French", "StreetFood"}] = {{"Raph", "Marcus", "Salomé", "Tess"}, {"sandwish merguez", "Tacos de Lyon", "Crepe au beur salé", "... Shit it burned :("}};
 
-    data[{"German", "Fancy"}] = {{"Lena", "Inky", "Ralph", "Selina"}, {"Vegan toast", "Avocado toast", "gluten free musli", "lactos free pumkin soup"}};
+    data[{"German", "Fancy"}] = {{"Eli", "Lena", "Inky", "Ralph", "Selina"}, {"Vegan toast", "Avocado toast", "gluten free musli", "lactos free pumkin soup"}};
     data[{"German", "Gourmet"}] = {{"Arne"}, {"Sauerbraten", "Trout Meunière", "Veal Rouladen", "Black Forest Cake"}};
-    data[{"German", "StreetFood"}] = {{"Eli", "Flo", "Micky"}, {"kebab", "bred with onions", "curry wurst", "... Shit it burned :("}};
+    data[{"German", "StreetFood"}] = {{"Christel", "Jürgen", "Flo", "Micky"}, {"kebab", "bred with onions", "curry wurst", "... Shit it burned :("}};
 
     data[{"Indian", "Fancy"}] = {{"Sanjeev", "Meenakshi", "Rahul", "Anjali"}, {"Butter Chicken", "Biryani", "Paneer Tikka", "Masala Dosa"}};
     data[{"Indian", "Gourmet"}] = {{"Priya"}, {"Lobster Malai Curry", "Tandoori Quail", "Paneer Makhani", "Kesar Pista Kulfi"}};
@@ -100,7 +100,15 @@ void Cook::cook(Player *player)
         size_t found = effect.find("skip");
         if (found != std::string::npos)
         {
-            player->skipNextRound++;
+            if (guest != nullptr)
+            {
+                guest->skipNextRound++;
+            }
+            else
+            {
+
+                player->skipNextRound++;
+            }
         }
 
         std::cout << "You feel " << effect << std::endl;

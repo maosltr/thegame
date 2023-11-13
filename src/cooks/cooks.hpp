@@ -10,7 +10,7 @@ public:
     Cook(string kitchen, string foodStyle);
 
     // Functions
-    void cook(Player *player);
+    void cook(Player* player, Player* guest);
 
     // Variables
     vector<string> names;

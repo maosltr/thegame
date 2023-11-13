@@ -26,6 +26,17 @@ void startTheGame(vector<Player> players)
     system("clear");
 }
 
+string offerFood()
+{
+
+    cout << "********Invitation*********\n\n";
+    cout << "Who do you want to invite for dinner? \n\n";
+    string name;
+    cin >> name;
+
+    return name;
+}
+
 char showMenue1(Player *player)
 {
 
@@ -42,7 +53,7 @@ char showMenue1(Player *player)
     cout << "5. Indian\n";
     cout << "*********************\n\n";
     cout << "NB: You can either order for yourself, or offer the meal\n\n";
-    
+
     char option;
     cin >> option;
     system("clear");
@@ -76,7 +87,7 @@ string showMenue2(Player *player, istream &input, ostream &output)
     else if (player->money >= fancy_price && option == '1')
     {
         cout << "I know a cool super hiped restaurant, follow me, trust me ... \n\n";
-        player->money-= fancy_price;
+        player->money -= fancy_price;
         return "Fancy";
     }
     else if (player->money >= gourmet_price && option == '3')
@@ -91,32 +102,32 @@ string showMenue2(Player *player, istream &input, ostream &output)
     }
 };
 
-void callCook(Player *player, char kitchen, string foodStyle)
+void callCook(Player *player, char kitchen, string foodStyle, Player *guest)
 {
     if (kitchen == '1')
     {
         Cook cook("Austrian", foodStyle);
-        cook.cook(player);
+        cook.cook(player, guest);
     }
     else if (kitchen == '2')
     {
         Cook cook("Moroccan", foodStyle);
-        cook.cook(player);
+        cook.cook(player, guest);
     }
     else if (kitchen == '3')
     {
         Cook cook("French", foodStyle);
-        cook.cook(player);
+        cook.cook(player, guest);
     }
     else if (kitchen == '4')
     {
         Cook cook("German", foodStyle);
-        cook.cook(player);
+        cook.cook(player, guest);
     }
     else if (kitchen == '5')
     {
         Cook cook("Indian", foodStyle);
-        cook.cook(player);
+        cook.cook(player, guest);
     }
     else
     {
