@@ -8,7 +8,7 @@
 
 TEST_CASE("Test Offering food")
 {
-    /*
+
     SECTION("Offering food")
     {
         std::istringstream input_stream("Marouane\nElisa\n");
@@ -25,7 +25,7 @@ TEST_CASE("Test Offering food")
         // Check for the skip flag
         // Call a cook for street food as long as "skip" in not in the effects
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 100; i++)
         {
             callCook(player, '1', std::string("StreetFood"), guest);
         }
@@ -34,9 +34,6 @@ TEST_CASE("Test Offering food")
         REQUIRE(guest->skipNextRound > 0);
         REQUIRE(player->skipNextRound == 0);
     }
-
-}
-*/
 
     SECTION("Not Offering food")
     {
@@ -54,7 +51,7 @@ TEST_CASE("Test Offering food")
         // Check for the skip flag
         // Call a cook for street food as long as "skip" in not in the effects
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 100; i++)
         {
             callCook(player, '1', std::string("StreetFood"), nullptr);
         }
