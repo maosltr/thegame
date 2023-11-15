@@ -6,6 +6,60 @@
 #include "cooks.hpp"
 #include "config.hpp"
 
+TEST_CASE("Test Offering food")
+{
+    SECTION("Offering food")
+    {
+        std::istringstream input_stream("Marouane\nElisa\n");
+        std::istringstream input_stream2("c\n");
+        std::ostringstream output_stream;
+
+        // create 2 players
+        std::vector<Player> players = setup_players(2, input_stream, output_stream);
+
+        // set a guest and a player
+        Player *player = &players[0];
+        Player *guest = &players[1];
+
+        // Check for the skip flag
+        // Call a cook for street food as long as "skip" in not in the effects
+
+        for (int i = 0; i < 10; i++)
+        {
+            callCook(player, '1', std::string("StreetFood"), guest);
+        }
+
+        // Check that the guest get skipped
+        REQUIRE(guest->skipNextRound > 0);
+        REQUIRE(player->skipNextRound == 0);
+    }
+
+    SECTION("Not Offering food")
+    {
+        std::istringstream input_stream("Marouane\nElisa\n");
+        std::istringstream input_stream2("c\n");
+        std::ostringstream output_stream;
+
+        // create 2 players
+        std::vector<Player> players = setup_players(2, input_stream, output_stream);
+
+        // set a guest and a player
+        Player *player = &players[0];
+        // Player *guest = &players[1];
+
+        // Check for the skip flag
+        // Call a cook for street food as long as "skip" in not in the effects
+
+        for (int i = 0; i < 10; i++)
+        {
+            callCook(player, '1', std::string("StreetFood"), nullptr);
+        }
+
+        // Check that the player get skipped
+        REQUIRE(player->skipNextRound > 0);
+    }
+}
+
 TEST_CASE("Test that Setup Players is working as expected")
 {
     SECTION("Creating 1 player")
@@ -89,7 +143,7 @@ TEST_CASE("Test foodStyle")
 
     SECTION("Ordering Gourmet with not enough money")
     {
-        newPlayer.money = gourmet_price - 1 ;
+        newPlayer.money = gourmet_price - 1;
         char foodStyle = '3';
         std::istringstream input_stream(std::string(1, foodStyle));
         std::string result = showMenue2(&newPlayer, input_stream, output_stream);

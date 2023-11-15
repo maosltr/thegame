@@ -68,6 +68,12 @@ int main()
       player_turn = (player_turn + 1) % numberOfPlayers;
 
       game_ended++;
+
+      // Continue
+      string continue_game;
+      cout << "\nPress any key to continue ";
+      cin >> continue_game;
+      system("clear");
    }
 
    return 0;

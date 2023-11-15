@@ -15,14 +15,14 @@ Cook::Cook(string kitchen, string foodStyle) : kitchen(kitchen), foodStyle(foodS
     {
         cout << "You ordered " << kitchen << " street food ... ";
 
-        effects.push_back("Diahrea ... All players have to move away from you 5 steps. If a player is in the same place, he goes to the hospital");
+        effects.push_back("Diahrea ... All players have to move away from you 3 steps. If a player is in the same place, he goes to the hospital");
         effects.push_back("Farty ... The players behind you have to move back 3 steps");
         effects.push_back("Burpy ... The players ahead of you have to move ahead 3 steps");
         effects.push_back("Intoxicated ... Go to hospital. If you have been offered the food, the offerer goes to jail.");
         effects.push_back("Sick ... Go to hospital and if the cook is among the players, he goes to jail");
         effects.push_back("Food Coma ... stay where you are and skip the next meal");
         effects.push_back("High and lost ... Switch place with a random player who will throw the lowest dice");
-        effects.push_back("Super farty ... You go to jail, skip next round, and all players step away 2 steps. All people in jail go to the hospital");
+        effects.push_back("EXPLOSIVE Diahrea ... Skip next round, and all players step away 5 steps, You go to jail, All people in jail go to the hospital");
     }
     else if (foodStyle == "Gourmet")
     {

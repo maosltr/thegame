@@ -133,10 +133,4 @@ void callCook(Player *player, char kitchen, string foodStyle, Player *guest)
     {
         cout << " ... But you are too drunk to choose properly, maybe you need to wait for the next meal !!!" << endl;
     }
-
-    // implement game actions
-    string continue_game;
-    cout << "\nPress any key to continue ";
-    cin >> continue_game;
-    system("clear");
 };
