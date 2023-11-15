@@ -60,8 +60,8 @@ SECTION("Not Offering food")
     REQUIRE(player->skipNextRound > 0);
 }
 }
-* /
-    TEST_CASE("Test that Setup Players is working as expected")
+
+TEST_CASE("Test that Setup Players is working as expected")
 {
     SECTION("Creating 1 player")
     {
@@ -151,3 +151,5 @@ TEST_CASE("Test foodStyle")
         REQUIRE(result == "StreetFood");
     }
 }
+
+*/
