@@ -34,7 +34,7 @@ TEST_CASE("Test Offering food")
         REQUIRE(player->skipNextRound == 0);
     }
 }
-/*
+
 SECTION("Not Offering food")
 {
     std::istringstream input_stream("Marouane\nElisa\n");
@@ -59,8 +59,8 @@ SECTION("Not Offering food")
     // Check that the player get skipped
     REQUIRE(player->skipNextRound > 0);
 }
-}
 
+/*
 TEST_CASE("Test that Setup Players is working as expected")
 {
     SECTION("Creating 1 player")
