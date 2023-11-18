@@ -44,19 +44,20 @@ TEST_CASE("Test Offering food")
         // create 2 players
         std::vector<Player> players = setup_players(2, input_stream, output_stream);
 
-        // set a guest and a player
+        // set a guest and a player, the guest is the player
         Player *player = &players[0];
-        // Player *guest = &players[1];
+        Player *guest = &players[0];
 
         // Check for the skip flag
         // Call a cook for street food as long as "skip" in not in the effects
 
         for (int i = 0; i < 100; i++)
         {
-            callCook(player, '1', std::string("StreetFood"), nullptr);
+            callCook(player, '1', std::string("StreetFood"), guest);
         }
 
         // Check that the player get skipped
+        REQUIRE(guest->skipNextRound > 0);
         REQUIRE(player->skipNextRound > 0);
     }
 }
