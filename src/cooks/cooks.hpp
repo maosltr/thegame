@@ -10,15 +10,22 @@ public:
     Cook(string kitchen, string foodStyle);
 
     // Functions
-    void cook(Player* player, Player* guest);
+    void cook(Player *player, Player *guest);
 
     // Variables
     vector<string> names;
     vector<string> specialities;
-    vector<string> effects;
     string cookName;
     string speciality;
     string foodStyle;
     string kitchen;
-    string effect;
+
+    struct Effect
+    {
+        std::string name;
+        std::string description;
+        bool skip;
+    };
+
+    std::vector<Effect> effects;
 };

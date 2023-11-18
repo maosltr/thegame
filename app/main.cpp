@@ -19,10 +19,9 @@ int main()
    int player_turn = 0;
    Player *player;
    string InvitedPlayer;
-   Player *guest = nullptr;
 
    system("clear");
-   cout << "****** Setup Players ******\n";
+   cout << "****** Setup Players ******\n\n";
    cout << "Enter the number of players: ";
    cin >> numberOfPlayers;
 
@@ -34,40 +33,30 @@ int main()
    {
 
       player = &players[player_turn]; // pointer to the memory address of the actual player
-
+      Player *guest;
       if (player->skipNextRound > 0)
       {
 
-         player->skipNextRound = 0;
+         player->skipNextRound--;
          cout << "****** " << player->name << " Skip your turn ******\n\n";
          string continue_game;
-         std::cout << "\nPress any key to continue ";
-         std::cin >> continue_game;
-         system("clear");
       }
       else
       {
          cout << "****** " << player->name << " ******\n\n";
          cout << "Credit: " << player->money << "$ \n\n";
 
-         InvitedPlayer = offerFood();
+         guest = offerFood(&players);
          char option1 = showMenue1(player);
          std::string option2 = showMenue2(player);
 
-         // Find who is the invited player
-         for (int i = 0; i < numberOfPlayers; i++)
-         {
-            if (players[i].name == InvitedPlayer)
-            {
-               guest = &players[i];
-            }
-         }
          callCook(player, option1, option2, guest);
       }
 
       player_turn = (player_turn + 1) % numberOfPlayers;
 
       game_ended++;
+      guest = nullptr;
 
       // Continue
       string continue_game;

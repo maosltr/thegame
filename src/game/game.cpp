@@ -1,4 +1,6 @@
 #include <iostream>
+#include <limits> // For numeric_limits
+
 #include <string>
 #include <vector>
 #include "players.hpp"
@@ -26,15 +28,39 @@ void startTheGame(vector<Player> players)
     system("clear");
 }
 
-string offerFood()
+Player *offerFood(vector<Player> *players)
 {
 
-    cout << "********Invitation*********\n\n";
     cout << "Who do you want to invite for dinner? \n\n";
-    string name;
-    cin >> name;
 
-    return name;
+    for (int i = 0; i < players->size(); i++)
+    {
+        cout << i + 1 << " - " << (*players)[i].name << "\n";
+    }
+    int index;
+
+    while (true)
+    {
+        cout << "\nEnter the number corresponding to the player: ";
+        if (cin >> index)
+        {
+            if (index >= 1 && index <= players->size())
+            {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clearing the input buffer
+                return &((*players)[index - 1]);
+            }
+            else
+            {
+                cout << "Invalid index. Please enter a number within range." << endl;
+            }
+        }
+        else
+        {
+            cout << "Invalid input. Please enter a valid number." << endl;
+            cin.clear();                                         // Clearing error flags
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clearing the input buffer
+        }
+    }
 }
 
 char showMenue1(Player *player)
@@ -42,17 +68,16 @@ char showMenue1(Player *player)
 
     system("clear");
     cout << "****** " << player->name << " ******\n\n";
-    cout << "What do you want to eat today?\n";
+    cout << "What do you want to order today?\n";
     cout << "Credit: " << player->money << "$ \n\n";
 
-    cout << "********MENU*********\n";
+    cout << "****** MENU ******\n";
     cout << "1. Austrian\n";
     cout << "2. Moroccan\n";
     cout << "3. French\n";
     cout << "4. German\n";
     cout << "5. Indian\n";
-    cout << "*********************\n\n";
-    cout << "NB: You can either order for yourself, or offer the meal\n\n";
+    cout << "******************\n\n";
 
     char option;
     cin >> option;
@@ -65,11 +90,11 @@ string showMenue2(Player *player, istream &input, ostream &output)
 {
 
     cout << "What kind of food?\n\n";
-    cout << "1. Fancy\n";
-    cout << "2. Street Food\n";
-    cout << "3. Gourmet\n";
-
-    cout << "*********************\n\n";
+    cout << "****** MENU ******\n";
+    cout << "1. Fancy (" << fancy_price << " $)\n";
+    cout << "2. Street Food (0 $)\n";
+    cout << "3. Gourmet (" << gourmet_price << " $)\n";
+    cout << "******************\n\n";
     char option;
     input >> option;
     system("clear");

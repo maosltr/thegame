@@ -5,7 +5,7 @@
 using namespace std;
 
 void startTheGame(std::vector<Player> players);
-string offerFood();
+Player *offerFood(vector<Player> *);
 char showMenue1(Player *player);
 string showMenue2(Player *player, istream &input = cin, ostream &output = cout);
 void callCook(Player *player, char kitchen, string foodStyle, Player *guest);

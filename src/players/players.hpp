@@ -9,8 +9,7 @@ class Player
 public:
     Player(string playerName) : name(playerName), money(initial_money)
     {
-        cout << "Nice name !" << endl;
-    }
+        }
 
     string name;
     int money;

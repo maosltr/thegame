@@ -15,35 +15,36 @@ Cook::Cook(string kitchen, string foodStyle) : kitchen(kitchen), foodStyle(foodS
     {
         cout << "You ordered " << kitchen << " street food ... ";
 
-        effects.push_back("Diahrea ... All players have to move away from you 3 steps. If a player is in the same place, he goes to the hospital");
-        effects.push_back("Farty ... The players behind you have to move back 3 steps");
-        effects.push_back("Burpy ... The players ahead of you have to move ahead 3 steps");
-        effects.push_back("Intoxicated ... Go to hospital. If you have been offered the food, the offerer goes to jail.");
-        effects.push_back("Sick ... Go to hospital and if the cook is among the players, he goes to jail");
-        effects.push_back("Food Coma ... stay where you are and skip the next meal");
-        effects.push_back("High and lost ... Switch place with a random player who will throw the lowest dice");
-        effects.push_back("EXPLOSIVE Diahrea ... Skip next round, and all players step away 5 steps, You go to jail, All people in jail go to the hospital");
+        effects.push_back({"Diahrea", "All players have to move away from you 3 steps. If a player is in the same place, he goes to the hospital"});
+        effects.push_back({"Farty", "The players behind you have to move back 3 steps"});
+        effects.push_back({"Burpy", "The players ahead of you have to move ahead 3 steps"});
+        effects.push_back({"Intoxicated", "Go to hospital. If you have been offered the food, the offerer goes to jail."});
+        effects.push_back({"Sick", "Go to hospital and if the cook is among the players, he goes to jail"});
+        effects.push_back({"Food Coma", "stay where you are and skip the next meal", 1});
+        effects.push_back({"High and lost", "Switch place with a random player who will throw the lowest dice"});
+        effects.push_back({"EXPLOSIVE Diahrea ", "Skip next round, and all players step away 5 steps, You go to jail, All people in jail go to the hospital", 1});
     }
+
     else if (foodStyle == "Gourmet")
     {
         cout << "You ordered " << kitchen << " gourmet ... ";
 
-        effects.push_back("In love ... move ahead 5 steps");
-        effects.push_back("Amazed ... move ahead slowly 6 steps");
-        effects.push_back("Crazy full ... move ahead 7 steps");
-        effects.push_back("Still hungry ... Get street food at the next round");
-        effects.push_back("Overwelmed by the flavors ... move ahead 9 steps");
+        effects.push_back({"In love", "move ahead 5 steps"});
+        effects.push_back({"Amazed", "move ahead slowly 6 steps"});
+        effects.push_back({"Crazy full", "move ahead 7 steps"});
+        effects.push_back({"Still hungry", "Get street food at the next round"});
+        effects.push_back({"Overwelmed by the flavors", "move ahead 9 steps"});
     }
     else
 
     {
         cout << "You ordered " << kitchen << " fancy food ... ";
 
-        effects.push_back("Happy ... move ahead 2 steps");
-        effects.push_back("Full ... move ahead slowly 3 steps");
-        effects.push_back("Energetic ... move ahead 4 steps");
-        effects.push_back("Sleepy ... stay where you are for a little power nap");
-        effects.push_back("Food Critic ... Stop critisizing and move back 1 step");
+        effects.push_back({"Happy", "move ahead 2 steps"});
+        effects.push_back({"Full", "move ahead slowly 3 steps"});
+        effects.push_back({"Energetic", "move ahead 4 steps"});
+        effects.push_back({"Sleepy", "stay where you are for a little power nap"});
+        effects.push_back({"Food Critic", "Stop critisizing and move back 1 step"});
     };
 }
 
@@ -95,22 +96,30 @@ void Cook::cook(Player *player, Player *guest)
 
         // Effect of the food
         std::cout << "Allo " << cookName << " !!!\n\n";
-        std::cout << cookName << " made " << speciality << " 😋\n";
-        std::string effect = pick_random(effects); // Assuming 'effects' is defined somewhere
-        size_t found = effect.find("skip");
-        if (found != std::string::npos)
+        std::cout << cookName << " made " << speciality << " 😋\n\n";
+
+        std::cout << "Player: " << player->name << "\n\n";
+        std::cout << "Cook: " << cookName << "\n";
+        std::cout << "Dish: " << speciality << "\n";
+
+        // pick a random effect
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<int> dist(0, effects.size() - 1);
+        int randomIndex = dist(gen);
+        Effect effect = effects[randomIndex]; // Assuming 'effects' is defined somewhere
+
+        // check if the effect skips the turn
+
+        std::cout << "Guest: " << guest->name << "\n";
+        std::cout << "Effect: " << effect.name << "\n";
+        std::cout << "Action: " << effect.description << "\n\n";
+        if (effect.skip == 1)
         {
-            if (guest != nullptr)
-            {
-                guest->skipNextRound++;
-            }
-            else
-            {
+            guest->skipNextRound++;
 
-                player->skipNextRound++;
-            }
+            std::cout << guest->name << " skips next round !!!"
+                      << "\n\n";
         }
-
-        std::cout << "You feel " << effect << std::endl;
     }
 };

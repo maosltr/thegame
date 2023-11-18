@@ -15,7 +15,7 @@ std::vector<Player> setup_players(int numberOfPlayers, istream &input, ostream &
     while (numberOfPlayersCounter < numberOfPlayers)
     {
 
-        cout << "Name of player " << numberOfPlayersCounter + 1 << ": ";
+        cout << "\nName of player " << numberOfPlayersCounter + 1 << ": ";
         string playerName;
         input >> playerName;
 
