@@ -82,7 +82,7 @@ void Cook::cook(Player *player, Player *guest)
         const std::vector<std::string> &specialities = it->second.second;
 
         // Randomly select a cook and a specialty
-        cookName = pick_random(names);
+        cookName = pick_random<std::string>(names);
 
         if (cookName == "Marcus")
         {
@@ -91,7 +91,7 @@ void Cook::cook(Player *player, Player *guest)
         }
         else
         {
-            speciality = pick_random(specialities);
+            speciality = pick_random<std::string>(specialities);
         }
 
         // Effect of the food
@@ -103,11 +103,7 @@ void Cook::cook(Player *player, Player *guest)
         std::cout << "Dish: " << speciality << "\n";
 
         // pick a random effect
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_int_distribution<int> dist(0, effects.size() - 1);
-        int randomIndex = dist(gen);
-        Effect effect = effects[randomIndex]; // Assuming 'effects' is defined somewhere
+        Effect effect = pick_random<Cook::Effect>(effects);
 
         // check if the effect skips the turn
 
